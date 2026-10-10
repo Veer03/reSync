@@ -1,105 +1,102 @@
-goals for now:
+# 🎧 reSync: The Open-Source Neural-Audio Reality Engine
 
-🚀 SoundTrack.OS: Comprehensive Master Specification & Implementation Blueprint
-The Real-Time Neural-Audio Reality Engine
-This document serves as the absolute, non-ambiguous master prompt and blueprint for engineering teams, system architects, and advanced AI coding models. It encapsulates the vision, system architecture, data flows, mathematical frameworks, and roadmaps required to construct SoundTrack.OS from scratch—even if elements push the current absolute limits of edge-computing possibilities.
+**reSync** is a privacy-first, local-first mobile application and software framework that acts as a real-time **"Reality Engine" for human hearing**. Instead of just blocking out the world using traditional phase-cancellation (Active Noise Cancellation), **reSync** intercepts live environmental microphone audio and dynamically transmutes your acoustic surroundings locally on-device with ultra-low latency.
 
-1. Executive Vision & Core Philosophy
-   The Paradigm Shift
-   Traditional consumer audio focuses on Isolation (Active Noise Cancellation - ANC) or Pass-Through (Transparency Mode).
+Turn chaotic city streets into spatial, adaptive lo-fi beats, and morph harsh sirens into soothing orchestral swells—all processed locally on your device with **zero latency** and **zero corporate data-harvesting**.
 
-SoundTrack.OS introduces Acoustic Transmutation. It treats the acoustic world not as noise to be muted, but as a live, dynamic MIDI controller and an unstructured multi-instrumental spatial audio stream.
-Technical Mission Statement
-To build a 100% open-source, privacy-first mobile application and embedded firmware ecosystem that intercepts live environmental microphone feeds, deconstructs the soundscape into distinct acoustic objects, and algorithmically rewrites or synthesizes those elements into a coherent spatial soundtrack in real time (Round-Trip Latency Target: < 10ms), dynamically modulated by the user's real-time biometric stress levels.
+---
 
-The Imperative Rules
-Zero Cloud Dependencies: All inference, digital signal processing (DSP), and synthesis must occur entirely locally on the host device's Neural Processing Unit (NPU) or Digital Signal Processor (DSP).
-Zero Data Leakage: Biometric streams and acoustic profiling data must never touch external storage or corporate telemetry pipelines.
-Hardware Agnosticism: The software stack must be decoupled from proprietary Bluetooth or OS audio pipelines via an open Hardware Abstraction Layer (HAL). 2. The Three Sovereign Software Pillars
-┌────────────────────────┐
-│ Live Microphone Input │
-└───────────┬────────────┘
-│
-▼
-┌──────────────────────────┐
-│ Acoustic Object Mixer │ ───► [Isolation / Muting Board]
-└───────────┬──────────────┘
-│ (Pass-through Objects)
-▼
-┌──────────────────────────┐
-│ Style-Transfer Engine │ ◄─── [Real-time Pitch/Amp Tracking]
-└───────────┬──────────────┘
-│
-▼
-┌─────────────────┐ ┌──────────────────────────┐
-│ Smartwatch APIs │ │Biometric Sentiment Comp. │
-│ (Raw HRV/Temp) │─►│ (Dynamic Synth Modifier) │
-└─────────────────┘ └───────────┬──────────────┘
-│
-▼
-┌────────────────────────┐
-│ Spatial Master Audio │ ───► [User Headphones]
-└────────────────────────┘
-Pillar 1: The Acoustic Style-Transfer Engine (The "Reality Modder")
-Instead of using phase-cancellation to destroy incoming audio waves, this engine extracts the mathematical properties of incoming ambient noise and translates them into musical inputs.
+## 👁️ The Vision
 
-Frequency Mapping & Tracking: Continuously applies a Fast Fourier Transform (FFT) to isolating sharp audio transients (e.g., sirens, industrial screeching, train horn).
-Synthesizer Transmutation: Extracts the fundmental frequency (pitch) and amplitude (envelope) of the disruption. Instead of letting the raw sound pass, the engine maps these metrics into an internal, low-latency polyphonic synthesizer.
-Example: A 900Hz pulsing police siren is tracked instantly; its raw wave is suppressed, and its pitch/envelope are fed into an automated virtual cello patch or an analog-style square-wave synth module, turning a chaotic alarm into a soaring orchestral melody that matches the active musical key of the user's audio layer.
-Pillar 2: The Biometric Sentiment Composer (The "Bio-Conductor")
-A closed-loop biofeedback system that transforms the user's physiological state into an algorithmic musical arranger.
+Traditional audio hardware treats your acoustic environment as an enemy to be silenced. **reSync** treats the world as a live synthesizer. By merging lightweight edge-AI models, open-source digital signal processing (DSP), and real-time biometric tracking, **reSync** rewrites your relationship with your environment, shifting your auditory experience from _blocking reality out_ to _remixing reality_.
 
-Data Ingestion: Establishes a local client pipeline via open wearable APIs or daemon layers (such as Gadgetbridge) to stream continuous, raw sensor metrics: Heart Rate Variability (HRV), Galvanic Skin Response (GSR), and skin temperature.
-Algorithmic Composition Adjustment: The system continuously evaluates stress indices. When stress anomalies or fight-or-flight signatures are registered (e.g., plummeting HRV combined with spiking heart rate in an aggressive city intersection):
-BPM Dampening: The background musical generation engine automatically transitions downward in tempo (e.g., from 120 BPM down to an alpha-wave inducing 60 BPM).
-Spectral Filtering: Implements a low-pass filter to roll off harsh high frequencies (>4kHz) that cause neurological alertness or anxiety.
-Spatial Decompression: Dynamically widens the stereo field into a simulated 3D spatial field, creating a sense of acoustic vastness and breathing room to counteract psychological claustrophobia.
-Pillar 3: The Acoustic Object Classifier (The "Real-World Mixer")
-An ultra-lightweight, high-performance spatial-temporal neural network running continuously on-device.
+---
 
-Deep Architectural Target: Uses an optimized, heavily quantized (INT8) convolutional or recurrent neural network model trained specifically on environmental audio classification tags.
-Isolation Capabilities: Breaks down an incoming monolithic stereo stream into distinct, spatialized tracking channels (Objects).
-Object 1: Construction Drill
-Object 2: Nearby Companion Voice
-Object 3: Approaching Electric Vehicle
-The Mixing Desk Experience: Provides the user with an intuitive multi-channel graphic interface. The user can literally turn down the "Construction Drill" channel to 0% volume while keeping "Companion Voice" at 100% and "Approaching Electric Vehicle" at 120% for situational awareness. 3. Targeted Technical Specifications & Execution Constraints
-To ensure this model is viable for direct conversion into working code repositories by an AI model, the following parameters must be strictly maintained:
+## 🛠️ The 3 Core Pillars
 
-Round-Trip Latency Budget: Must not exceed 10 milliseconds (Input Microphone -> Buffer Acquisition -> NPU Inference -> DSP Synthesis -> Output Hardware Loop). Any latency over 15ms will trigger the "comb filter" effect, shattering the illusion of real-time transformation.
-Model Size Constraints: To run entirely within local smartphone SRAM or dedicated NPU memory buffers without causing severe thermal throttling or rapid battery exhaustion, models must be heavily optimized using TinyML practices, structural pruning, and INT8 quantization, capping individual model sizes at < 15 Megabytes.
-Framework Layer Requirements: Low-level routines must be authored in native C++20 or Rust, leveraging hardware-specific accelerated libraries such as ARM Neon SIMD intrinsics for mobile chipsets, and CoreAudio / AAudio for native platform low-latency paths. 4. Universal Repository & File Architecture
-When setting up or generating code bases for this project, use this exact multi-layered repository blueprint:
+### 1. Acoustic Style-Transfer Engine (The "Gamer Mod" for Real Life)
 
-soundtrack-os/
-├── .github/ # Open-source continuous integration pipelines
-├── apps/ # Native User Interface & Client Applications
-│ ├── android/ # Android Native (Kotlin + Jetpack Compose)
-│ └── ios/ # iOS Native (Swift + SwiftUI)
-├── core/ # The Real-Time C++ Signal Loop & DSP Engine
-│ ├── include/ # Cross-platform header files
-│ ├── src/ # Audio capture, synthesis, and routing logic
-│ └── tests/ # Latency and DSP accuracy validation suites
-├── models/ # Quantized Local TinyML Network Architectures
-│ ├── object_classifier.tflite # Quantized INT8 sound classification model
-│ └── style_transfer.onnx # Extracted audio-to-MIDI pitch mapping weights
-├── firmware/ # Standalone Micro-Hardware Adaptations
-│ ├── esp32-s3/ # Firmware configuration for DIY audio boards
-│ └── raspberry-pi-zero/ # Headless Linux configurations for portable DACs
-└── README.md # Core project presentation and build documentation 5. Long-Term Open-Core Financial Architecture
-To ensure project sustainability without violating user privacy or fracturing open-source principles, SoundTrack.OS implements a multi-stream Open-Core Monetization Engine:
+- **What it does:** Extracts the pitch, amplitude, and frequency profile of disruptive environmental sounds (e.g., sirens, car horns, construction screeches) on the fly.
+- **The Magic:** Instead of muting them, it feeds that structural audio data into a local synthesis engine. A harsh police siren is instantly morphed into a soaring cello note or synth pad that perfectly matches the key, scale, and rhythm of the background music you are listening to.
 
-                  ┌─────────────────────────────────┐
-                  │ SoundTrack.OS Open Core (Free)  │
-                  └────────────────┬────────────────┘
-                                   │
-         ┌─────────────────────────┼────────────────────────┐
-         ▼                         ▼                        ▼
+### 2. Biometric Sentiment Composer (The "Bio-Conductor")
 
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ B2C Marketplace │ │ B2C Hardware │ │ B2B Licensing │
-│ Premium Custom │ │ Custom Wearable │ │ Enterprise Tech │
-│ Audio Themes │ │ Neural DACs │ │ (Hearing Aids) │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
-The Audio Pack & Soundscape Marketplace (B2C): While the framework is fully open and usable for free with basic synthesis options, an integrated client marketplace allows legendary audio engineers, film composers, and independent musicians to sell cryptographic, locally compiled "Reality Skins". Users buy a $4.99 pack to transform their city into a custom Blade Runner or Lord of the Rings soundscape, with 80% passing to the creator and 20% supporting the open-source core development fund.
-First-Party Open-Hardware Merchandising (B2C): Recognizing that mainstream consumers do not want to flash their own micro-controllers or configure complex hardware, the project creates and sells sleek, pre-assembled, pocket-sized hardware dongles—the SoundTrack.OS Neural DAC. This accessory offloads the massive computational AI burden onto its own optimized battery chip, sparing the user's primary mobile device.
-Enterprise Framework Licensing (B2B): Industrial hearing protection firms, defense contractors, and specialized medical hearing aid corporations require advanced, zero-latency local acoustic object separation. The company licenses its hardened, enterprise-grade core engine binaries under proprietary terms for heavy industrial use cases, funding open community infrastructure.
+- **What it does:** Creates a continuous, closed-loop system by polling live heart rate variability (HRV), skin temperature, and motion data via open smartwatch APIs.
+- **The Magic:** If the system detects a spike in physiological stress (e.g., entering a packed, chaotic subway station), the local generative music engine dynamically shifts the composition. It lowers the track's BPM, rolls off harsh high frequencies, and widens the spatial audio field to biologically guide your heart rate back down.
+
+### 3. Acoustic Object Classifier (The "Real-World Audio Mixer")
+
+- **What it does:** Runs an ultra-lightweight TinyML spatial audio isolation model that breaks down your live environment into distinct, discrete "sound objects."
+- **The Magic:** It gives the user a visual mixing board for real life. Want to hear your friend talking perfectly while reducing the barking dog next door by 80% and silencing the traffic completely? Just adjust the sliders.
+
+---
+
+## 📐 Hard Technical Targets & Constraints
+
+To ensure immersion without breaking safety or draining batteries, all development must adhere to these strict engineering constraints:
+
+- **Round-Trip Latency:** **<10ms total latency** (from microphone input to headphone driver output). Anything higher causes disorientation and echo effects.
+- **100% Edge Compute:** All inference, classification, and synthesis must run locally on smartphone **Neural Processing Units (NPUs)** or specialized Digital Signal Processors (DSPs). **Zero data is sent to the cloud.**
+- **Model Footprint:** AI models must be highly optimized, quantized down to **INT8**, and maintain a maximum memory footprint of **<15MB** to run continuously without overheating the device or draining the battery under two hours.
+- **Platform Agnostic:** Built using cross-platform open-source frameworks to bypass proprietary corporate Bluetooth audio stacks.
+
+---
+
+## 📂 Repository Architecture
+
+```text
+reSync/
+├── .github/                  # CI/CD pipelines & community templates
+├── apps/
+│   ├── android/              # Native Android App (Kotlin / Jetpack Compose UI)
+│   └── ios/                  # Native iOS App (Swift / SwiftUI)
+├── core/
+│   ├── include/              # Header files for core audio pipeline
+│   ├── src/
+│   │   ├── audio_router.cpp  # Ultra-low latency buffer interception (JUCE/AAudio)
+│   │   ├── dsp_engine.cpp    # Real-time synthesis & pitch tracking
+│   │   └── bio_bridge.cpp    # Smartwatch API ingest & parsing (via Gadgetbridge)
+│   └── CMakeLists.txt        # Cross-platform core build specification
+├── models/
+│   ├── classifier.tflite     # Quantized INT8 Acoustic Object Classifier (<15MB)
+│   └── style_transfer.tflite # Edge-optimized acoustic morphing model
+└── firmware/
+    └── esp32-s3/             # Standalone open-hardware firmware for external DACs
+```
+
+---
+
+## 🧱 Existing Building Blocks
+
+We are not rebuilding the wheel. **reSync** links into powerful existing open-source projects:
+
+- **Audio Routing:** [OpenDSP](https://github.com) & [SoundXRouter](https://github.com) for zero-latency, headless virtual audio patching.
+- **Audio Framework:** **JUCE** (C++) for building the real-time cross-platform hardware abstraction layer.
+- **Neural Audio Inference:** Inspired by [Neural Amp Modeler (NAM)](https://github.com) to prove non-linear real-time neural processing can run locally on consumer electronics.
+- **Biometric Ingest:** [Gadgetbridge](https://github.com) framework to pull raw biometric streams from wear-ables completely offline.
+
+---
+
+## 💰 The Long-Term Sustainable Business Model (Open-Core)
+
+**reSync** will always remain free and open-source. To fund development and scale the ecosystem, we utilize a sustainable marketplace and hardware layer:
+
+1. **The Premium Theme Marketplace (B2C):** While the app engine is entirely free, users can purchase premium, bespoke "Soundscape Reality Themes" created by iconic sound designers and musicians (e.g., a "Cyberpunk Neon" pack or an official cinematic sci-fi ambient pack). We take a 20% cut from marketplace creators.
+2. **Custom Open-Hardware (B2C):** To bypass phone operating system background limitations and preserve phone battery, we will design and sell the **reSync Neural DAC**—a sleek, credit-card-sized portable audio processing unit that clips onto your pocket and runs our open firmware natively.
+3. **B2B Licensing:** Licensing the optimized local Acoustic Object Classifier to industrial safety headset companies and smart hearing-aid manufacturers to protect workers' hearing while optimizing human speech intelligence.
+
+---
+
+## 🤝 How to Contribute
+
+We are looking for core contributors in the following domains:
+
+- **Audio Engineering:** Developers experienced in C++, JUCE, Low-Level Android Audio (AAudio/Oboe), and Apple CoreAudio.
+- **TinyML/AI:** Machine learning engineers specializing in audio source separation, pitch-tracking networks, and model quantization (TensorFlow Lite, ONNX Runtime Mobile).
+- **Mobile UI/UX:** Designers and developers who can help build our real-time, sci-fi HUD dashboard interface.
+
+Check the `CONTRIBUTING.md` file to set up your local development environment and view current issues.
+
+---
+
+**reSync** — _Re-arrange the soundtrack of your life._
